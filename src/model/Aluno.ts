@@ -14,7 +14,7 @@ export class Aluno {
     /**
      * Registro acadêmico (RA) do aluno.
      */
-    private ra: string;
+    private ra: string = "";
 
     /**
      * Nome do aluno.
@@ -50,7 +50,6 @@ export class Aluno {
      * Construtor da classe Aluno.
      * Inicializa os atributos com os valores fornecidos.
      * 
-     * @param ra Registro acadêmico do aluno.
      * @param nome Nome do aluno.
      * @param sobrenome Sobrenome do aluno.
      * @param dataNascimento Data de nascimento do aluno.
@@ -59,15 +58,13 @@ export class Aluno {
      * @param celular Número de celular do aluno.
      */
     constructor(
-        ra: string,
         nome: string,
         sobrenome: string,
         dataNascimento: Date,
         endereco: string,
         email: string,
         celular: string
-    ) {
-        this.ra = ra;                     // Atribui o RA ao atributo ra.
+    ) {                     // Atribui o RA ao atributo ra.
         this.nome = nome;                 // Atribui o nome ao atributo nome.
         this.sobrenome = sobrenome;       // Atribui o sobrenome ao atributo sobrenome.
         this.dataNascimento = dataNascimento; // Atribui a data de nascimento ao atributo dataNascimento.
