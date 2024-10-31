@@ -1,12 +1,39 @@
 import { Request, Response, Router } from "express";
+import { AlunoController } from "./controller/AlunoController";
+import { LivroController } from "./controller/LivroController";
+import { EmprestimoController } from "./controller/EmprestimoController";
 
 // Cria um roteador
 const router = Router();
 
-// Criando sua rota principal para a aplicação
-router.get("/", (req:Request, res:Response) => {
-    res.json({ mensagem: "Bem-vindo ao meu servidor"});
+// Criando uma rota principal para a aplicação
+router.get("/", (req: Request, res: Response) => {
+    res.json({ mensagem: "Olá, mundo!" });
 });
 
-// Exportando as rotas
-export{ router };
+/* 
+* ROTAS PARA CARROS
+*/ 
+// Rota para listar os carros
+router.get("/lista/alunos", AlunoController.todos);
+// Rota para cadastrar novo carro
+router.post("/novo/aluno", AlunoController.novo);
+
+/* 
+* ROTAS PARA CLIENTES
+*/ 
+// Rota para listar os clientes
+router.get("/lista/livros", LivroController.todos);
+// Rota para cadastrar novo cliente 
+router.post("/novo/livro", LivroController.novo);
+
+/* 
+* ROTAS PARA PEDIDOS
+*/ 
+// Rota para listar os pedidos
+router.get("/lista/emprestimos", EmprestimoController.todos);
+// Rota para cadastrar novo pedido
+// router.post("/novo/emprestimo", EmprestimoController.novo);
+
+// exportando as rotas
+export { router }; 
