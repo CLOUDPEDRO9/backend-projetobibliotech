@@ -91,4 +91,3 @@ export class AlunoController extends Aluno {
         }
     }
 }
-
