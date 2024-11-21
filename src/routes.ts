@@ -15,7 +15,7 @@ router.get("/", (req: Request, res: Response) => {
 * ROTAS PARA CARROS
 */ 
 // Rota para listar os carros
-router.get("/lista/alunos", AlunoController.todos);
+router.get("/aluno", AlunoController.todos);
 // Rota para cadastrar novo carro
 router.post("/novo/aluno", AlunoController.novo);
 
@@ -23,7 +23,7 @@ router.post("/novo/aluno", AlunoController.novo);
 * ROTAS PARA CLIENTES
 */ 
 // Rota para listar os clientes
-router.get("/lista/livros", LivroController.todos);
+router.get("/livro", LivroController.todos);
 // Rota para cadastrar novo cliente 
 router.post("/novo/livro", LivroController.novo);
 
