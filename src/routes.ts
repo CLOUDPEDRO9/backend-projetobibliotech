@@ -31,7 +31,7 @@ router.post("/novo/livro", LivroController.novo);
 * ROTAS PARA PEDIDOS
 */ 
 // Rota para listar os pedidos
-router.get("/lista/emprestimos", EmprestimoController.todos);
+router.get("/emprestimo", EmprestimoController.todos);
 // Rota para cadastrar novo pedido
 // router.post("/novo/emprestimo", EmprestimoController.novo);
 

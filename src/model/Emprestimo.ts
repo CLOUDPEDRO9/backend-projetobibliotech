@@ -185,28 +185,39 @@ export class Emprestimo {
      */
     static async listagemEmprestimos(): Promise<Array<Emprestimo> | null> {
         // objeto para armazenar a lista de empréstimos
-        const listaDeEmprestimos: Array<Emprestimo> = [];
+        const listaDeEmprestimos: Array<any> = [];
 
         try {
             // query de consulta ao banco de dados
-            const querySelectEmprestimo = `SELECT * FROM emprestimo;`;
+            const querySelectEmprestimo = `SELECT
+                emprestimo.id_emprestimo,
+                emprestimo.id_aluno,
+                emprestimo.id_livro,
+                emprestimo.data_emprestimo,
+                emprestimo.data_devolucao,
+                emprestimo.status_emprestimo,
+                aluno.nome AS nome_aluno,
+                livro.titulo AS titulo_livro
+            FROM 
+                emprestimo
+            JOIN 
+                aluno ON emprestimo.id_aluno = aluno.id_aluno
+            JOIN 
+                livro ON emprestimo.id_livro = livro.id_livro;`;
 
-            // fazendo a consulta e guardando a resposta
             const respostaBD = await database.query(querySelectEmprestimo);
-
-            // usando a resposta para instanciar um objeto do tipo Emprestimo
+            
             respostaBD.rows.forEach((linha) => {
-                // instancia (cria) objeto Emprestimo
-                const novoEmprestimo = new Emprestimo(
-                    linha.id_aluno,
-                    linha.id_livro,
-                    linha.data_emprestimo,
-                    linha.data_devolucao,
-                    linha.status_emprestimo
-                );
-
-                // atribui o ID ao objeto
-                novoEmprestimo.setIdEmprestimo(linha.id_emprestimo);
+                let novoEmprestimo = {
+                    idEmprestimo: linha.id_emprestimo,
+                    idLivro: linha.id_livro,
+                    idAluno: linha.id_aluno,
+                    dataEmprestimo: linha.data_emprestimo_br,
+                    dataDevolucao: linha.data_devolucao_br,
+                    statusEmprestimo: linha.status_emprestimo,
+                    nomeAluno: linha.nome_aluno,
+                    tituloLivro: linha.titulo_livro
+                };
 
                 // adiciona o objeto na lista
                 listaDeEmprestimos.push(novoEmprestimo);
@@ -237,37 +248,37 @@ export class Emprestimo {
      * @throws {Error} - Se ocorrer algum erro durante a execução do cadastro, uma mensagem de erro é exibida
      *                   no console junto com os detalhes do erro.
      */
-    // static async cadastroEmprestimo(emprestimo: Emprestimo): Promise<boolean> {
-    //     try {
-    //         // query para inserir um empréstimo no banco de dados
-    //         const queryInsertEmprestimo = `INSERT INTO emprestimo (id_aluno, id_livro, data_emprestimo, data_devolucao, status_emprestimo)
-    //                                 VALUES
-    //                                 ('${emprestimo.getIdAluno()}', 
-    //                                 '${emprestimo.getIdLivro()}', 
-    //                                 '${emprestimo.getDataEmprestimo()}', 
-    //                                 '${emprestimo.getDataDevolucao()}', 
-    //                                 '${emprestimo.getStatusEmprestimo()}')  // Removido a vírgula extra aqui
-    //                                 RETURNING id_emprestimo;`;
+    static async cadastroEmprestimo(emprestimo: Emprestimo): Promise<boolean> {
+        try {
+            // query para inserir um empréstimo no banco de dados
+            const queryInsertEmprestimo = `INSERT INTO emprestimo (id_aluno, id_livro, data_emprestimo, data_devolucao, status_emprestimo)
+                                    VALUES
+                                    ('${emprestimo.getIdAluno()}', 
+                                    '${emprestimo.getIdLivro()}', 
+                                    '${emprestimo.getDataEmprestimo()}', 
+                                    '${emprestimo.getDataDevolucao()}', 
+                                    '${emprestimo.getStatusEmprestimo()}')
+                                    RETURNING id_emprestimo;`;
 
-    //         // executa a query no banco e armazena a resposta
-    //         const respostaBD = await database.query(queryInsertEmprestimo);
+            // executa a query no banco e armazena a resposta
+            const respostaBD = await database.query(queryInsertEmprestimo);
 
-    //         // verifica se a quantidade de linhas modificadas é diferente de 0
-    //         if (respostaBD.rowCount !== 0) {
-    //             // imprime o ID do empréstimo cadastrado
-    //             console.log(`Empréstimo cadastrado com sucesso! ID do empréstimo: ${respostaBD.rows[0].id_emprestimo}`);
-    //             // true significa que o cadastro foi feito
-    //             return true;
-    //         }
+            // verifica se a quantidade de linhas modificadas é diferente de 0
+            if (respostaBD.rowCount !== 0) {
+                // imprime o ID do empréstimo cadastrado
+                console.log(`Empréstimo cadastrado com sucesso! ID do empréstimo: ${respostaBD.rows[0].id_emprestimo}`);
+                // true significa que o cadastro foi feito
+                return true;
+            }
 
-    //         // false significa que o cadastro NÃO foi feito
-    //         return false;
-    //     } catch (error) {
-    //         // imprime mensagem de erro junto com o log
-    //         console.log('Erro ao cadastrar o empréstimo. Verifique os logs para mais detalhes.');
-    //         console.log(error);
-    //         // retorna valor falso em caso de falha
-    //         return false;
-    //     }
-    // }
+            // false significa que o cadastro NÃO foi feito
+            return false;
+        } catch (error) {
+            // imprime mensagem de erro junto com o log
+            console.log('Erro ao cadastrar o empréstimo. Verifique os logs para mais detalhes.');
+            console.log(error);
+            // retorna valor falso em caso de falha
+            return false;
+        }
+    }
 }
