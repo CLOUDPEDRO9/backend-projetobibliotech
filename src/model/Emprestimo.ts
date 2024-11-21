@@ -212,8 +212,8 @@ export class Emprestimo {
                     idEmprestimo: linha.id_emprestimo,
                     idLivro: linha.id_livro,
                     idAluno: linha.id_aluno,
-                    dataEmprestimo: linha.data_emprestimo_br,
-                    dataDevolucao: linha.data_devolucao_br,
+                    dataEmprestimo: linha.data_emprestimo,
+                    dataDevolucao: linha.data_devolucao,
                     statusEmprestimo: linha.status_emprestimo,
                     nomeAluno: linha.nome_aluno,
                     tituloLivro: linha.titulo_livro

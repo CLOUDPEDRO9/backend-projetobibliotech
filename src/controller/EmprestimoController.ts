@@ -55,37 +55,37 @@ export class EmprestimoController extends Emprestimo {
      * @throws {Error} - Se ocorrer um erro durante o processo de cadastro, uma mensagem é exibida no console e uma 
      *                   resposta HTTP 400 com uma mensagem de erro é enviada ao cliente.
      */
-    // static async novo(req: Request, res: Response): Promise<any> {
-    //     try {
-    //         // recuperando informações do corpo da requisição e colocando em um objeto da interface EmprestimoDTO
-    //         const emprestimoRecebido: EmprestimoDTO = req.body;
+    static async novo(req: Request, res: Response): Promise<any> {
+        try {
+            // recuperando informações do corpo da requisição e colocando em um objeto da interface EmprestimoDTO
+            const emprestimoRecebido: EmprestimoDTO = req.body;
 
-    //         // instanciando um objeto do tipo Emprestimo com as informações recebidas
-    //         const novoEmprestimo = new Emprestimo(
-    //             emprestimoRecebido.idAluno,
-    //             emprestimoRecebido.idLivro,
-    //             emprestimoRecebido.dataEmprestimo,
-    //             emprestimoRecebido.dataDevolucao,
-    //             emprestimoRecebido.statusEmprestimo // Corrigido o nome do atributo
-    //         );
+            // instanciando um objeto do tipo Emprestimo com as informações recebidas
+            const novoEmprestimo = new Emprestimo(
+                emprestimoRecebido.idAluno,
+                emprestimoRecebido.idLivro,
+                emprestimoRecebido.dataEmprestimo,
+                emprestimoRecebido.dataDevolucao,
+                emprestimoRecebido.statusEmprestimo // Corrigido o nome do atributo
+            );
 
-    //         // Chama a função de cadastro passando o objeto como parâmetro
-    //         const respostaClasse = await Emprestimo.cadastroEmprestimo(novoEmprestimo);
+            // Chama a função de cadastro passando o objeto como parâmetro
+            const respostaClasse = await Emprestimo.cadastroEmprestimo(novoEmprestimo);
 
-    //         // verifica a resposta da função
-    //         if (respostaClasse) {
-    //             // retornar uma mensagem de sucesso
-    //             return res.status(200).json({ mensagem: "Empréstimo cadastrado com sucesso!" });
-    //         } else {
-    //             // retorno uma mensagem de erro
-    //             return res.status(400).json({ mensagem: "Erro ao cadastrar o empréstimo. Entre em contato com o administrador do sistema." });
-    //         }
-    //     } catch (error) {
-    //         // lança uma mensagem de erro no console
-    //         console.log(`Erro ao cadastrar um empréstimo. ${error}`);
+            // verifica a resposta da função
+            if (respostaClasse) {
+                // retornar uma mensagem de sucesso
+                return res.status(200).json({ mensagem: "Empréstimo cadastrado com sucesso!" });
+            } else {
+                // retorno uma mensagem de erro
+                return res.status(400).json({ mensagem: "Erro ao cadastrar o empréstimo. Entre em contato com o administrador do sistema." });
+            }
+        } catch (error) {
+            // lança uma mensagem de erro no console
+            console.log(`Erro ao cadastrar um empréstimo. ${error}`);
 
-    //         // retorna uma mensagem de erro a quem chamou a mensagem
-    //         return res.status(400).json({ mensagem: "Não foi possível cadastrar o empréstimo. Entre em contato com o administrador do sistema." });
-    //     }
-    // }
+            // retorna uma mensagem de erro a quem chamou a mensagem
+            return res.status(400).json({ mensagem: "Não foi possível cadastrar o empréstimo. Entre em contato com o administrador do sistema." });
+        }
+    }
 }
