@@ -88,4 +88,29 @@ export class EmprestimoController extends Emprestimo {
             return res.status(400).json({ mensagem: "Não foi possível cadastrar o empréstimo. Entre em contato com o administrador do sistema." });
         }
     }
+
+    static async remover(req: Request, res: Response): Promise<any> {
+        try {
+            // recuperando o id do carro que será removido
+            const idEmprestimo = parseInt(req.params.idEmprestimo as string);
+
+            // chamando a função de remoção de carro
+            const respostaModelo = await Emprestimo.removerEmprestimo(idEmprestimo);
+
+            // verificando a resposta da função
+            if (respostaModelo) {
+                // retornar uma mensagem de sucesso
+                return res.status(200).json({ mensagem: "Emprestimo removido com sucesso!" });
+            } else {
+                // retorno uma mensagem de erro
+                return res.status(400).json({ mensagem: "Erro ao remover o Emprestimo. Entre em contato com o administrador do sistema." })
+            }
+        } catch (error) {
+            // lança uma mensagem de erro no console
+            console.log(`Erro ao remover um Emprestimo. ${error}`);
+
+            // retorna uma mensagem de erro para quem chamou a mensagem
+            return res.status(400).json({ mensagem: "Não foi possível remover o Emprestimo. Entre em contato com o administrador do sistema." });
+        }
+    }
 }

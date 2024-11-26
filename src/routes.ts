@@ -18,6 +18,8 @@ router.get("/", (req: Request, res: Response) => {
 router.get("/aluno", AlunoController.todos);
 // Rota para cadastrar novo carro
 router.post("/novo/aluno", AlunoController.novo);
+// Rota para deletar carro
+router.delete("/delete/aluno/:idAluno", AlunoController.remover);
 
 /* 
 * ROTAS PARA CLIENTES
@@ -26,6 +28,8 @@ router.post("/novo/aluno", AlunoController.novo);
 router.get("/livro", LivroController.todos);
 // Rota para cadastrar novo cliente 
 router.post("/novo/livro", LivroController.novo);
+// Rota para deletar carro
+router.delete("/delete/livro/:idLivro", LivroController.remover);
 
 /* 
 * ROTAS PARA PEDIDOS
@@ -34,7 +38,8 @@ router.post("/novo/livro", LivroController.novo);
 router.get("/emprestimo", EmprestimoController.todos);
 // Rota para cadastrar novo pedido
 router.post("/novo/emprestimo", EmprestimoController.novo);
-// router.post("/novo/emprestimo", EmprestimoController.novo);
+// Rota para deletar carro
+router.delete("/delete/emprestimo/:idEmprestimo", EmprestimoController.remover);
 
 // exportando as rotas
 export { router }; 

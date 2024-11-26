@@ -326,5 +326,35 @@ export class Aluno {
             return false;
         }
     }
+
+    static async removerAluno(idAluno: number): Promise<boolean> {
+        try {
+            // cria uma query para deletar um objeto do banco de dados, passando como parâmetro
+            const queryDeleteAluno = `DELETE FROM aluno WHERE id_aluno = ${idAluno}`;
+
+            // executar a query no banco e armazena a resposta do banco de dados
+            const respostaBD = await database.query(queryDeleteAluno);
+
+            // verifica se o numero de linhas alteradas é diferente de 0
+            if(respostaBD.rowCount != 0) {
+                // exibe uma mensagem no console
+                console.log(`Aluno removido com sucesso! ID do Aluno: ${idAluno}`);
+                // retorna true, indicando que o carro foi removido
+                return true;
+            }
+
+            // caso não tenha sido removido, retorna false
+            return false
+
+        // trata qualquer erro que possa acontecer no caminho    
+        } catch (error) {
+            // exibe uma mensagem de falha
+            console.log(`Erro ao remover aluno. Verifique os logs para mais detalhes.`);
+            // imprime o erro no console da API
+            console.log(error);
+            // retorna false, o que indica que a remoção não foi feita
+            return false;
+        }
+    }
 }
 
