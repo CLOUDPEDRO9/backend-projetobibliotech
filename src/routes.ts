@@ -12,34 +12,42 @@ router.get("/", (req: Request, res: Response) => {
 });
 
 /* 
-* ROTAS PARA CARROS
+* ROTAS PARA ALUNOS
 */ 
-// Rota para listar os carros
+// Rota para listar os alunos
 router.get("/aluno", AlunoController.todos);
-// Rota para cadastrar novo carro
+// Rota para cadastrar novo aluno
 router.post("/novo/aluno", AlunoController.novo);
-// Rota para deletar carro
+// Rota para deletar aluno
 router.delete("/delete/aluno/:idAluno", AlunoController.remover);
+// Rota para atualizar um aluno
+router.put("/atualizar/aluno/:idAluno", AlunoController.atualizar);
+
 
 /* 
-* ROTAS PARA CLIENTES
+* ROTAS PARA LIVROS
 */ 
-// Rota para listar os clientes
+// Rota para listar os livros
 router.get("/livro", LivroController.todos);
-// Rota para cadastrar novo cliente 
+// Rota para cadastrar novo livro
 router.post("/novo/livro", LivroController.novo);
-// Rota para deletar carro
+// Rota para deletar livro
 router.delete("/delete/livro/:idLivro", LivroController.remover);
+// Rota para atualizar um livro
+router.put("/atualizar/livro/:idLivro", LivroController.atualizar);
+
 
 /* 
-* ROTAS PARA PEDIDOS
+* ROTAS PARA EMPRESTIMOS
 */ 
-// Rota para listar os pedidos
+// Rota para listar os emprestimos
 router.get("/emprestimo", EmprestimoController.todos);
-// Rota para cadastrar novo pedido
+// Rota para cadastrar novo emprestimo
 router.post("/novo/emprestimo", EmprestimoController.novo);
-// Rota para deletar carro
+// Rota para deletar emprestimo
 router.delete("/delete/emprestimo/:idEmprestimo", EmprestimoController.remover);
+// Rota para atualizar um emprestimo
+router.put("/atualizar/emprestimo/:idEmprestimo", EmprestimoController.atualizar);
 
 // exportando as rotas
 export { router }; 

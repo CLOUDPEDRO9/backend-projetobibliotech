@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "dbcd1202-87bc-489d-a9fb-7c226796376b",
+		"name": "BIBLIOTECH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38148083"
+	},
+	"item": [
+		{
+			"name": "ALUNO",
+			"item": [
+				{
+					"name": "LISTAR ALUNO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/aluno",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"aluno"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CADASTRAR ALUNO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Felisberto\",\r\n    \"sobrenome\" : \"Feliz\",\r\n    \"dataNascimento\" : \"2000-06-02\",\r\n    \"endereco\" : \"Rua Palestra, 1914\",\r\n    \"email\" : \"palestra1951@gmail.com\",\r\n    \"celular\" : \"16991023472\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/novo/aluno",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"novo",
+								"aluno"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ALUNO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/delete/aluno/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"delete",
+								"aluno",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR ALUNO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Yuri\",\r\n    \"sobrenome\" : \"Dinato\",\r\n    \"dataNascimento\" : \"2007-06-27\",\r\n    \"endereco\" : \"Rua Albert, 1888\",\r\n    \"email\" : \"yurisenai1@gmail.com\",\r\n    \"celular\" : \"16997453472\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/atualizar/aluno/26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"atualizar",
+								"aluno",
+								"26"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LIVRO",
+			"item": [
+				{
+					"name": "LISTAR LIVRO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/livro",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"livro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CADASTRAR LIVRO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Cabeça fria, coração quente 24\",\r\n    \"autor\": \"Abel Ferreira\",\r\n    \"editora\": \"Garoa Livros\",\r\n    \"anoPublicacao\": \"2022\",\r\n    \"isbn\": \"978-0246342415\",\r\n    \"quantTotal\": 10,\r\n    \"quantDisponivel\": 10,\r\n    \"valorAquisicao\": 60,\r\n    \"statusLivroEmprestado\": \"Disponível\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/novo/livro",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"novo",
+								"livro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE LIVRO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/delete/livro/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"delete",
+								"livro",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR LIVRO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Maus: a história de um sobrevivente\",\r\n    \"autor\": \"Art Spiegelman\",\r\n    \"editora\": \"Grupo Companhia das Letras\",\r\n    \"anoPublicacao\": \"1986\",\r\n    \"isbn\": \"978-8535906288\",\r\n    \"quantTotal\": 10,\r\n    \"quantDisponivel\": 10,\r\n    \"valorAquisicao\": 90,\r\n    \"statusLivroEmprestado\": \"Disponível\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/atualizar/livro/27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"atualizar",
+								"livro",
+								"27"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EMPRESTIMO",
+			"item": [
+				{
+					"name": "LISTAR EMPRESTIMO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/emprestimo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"emprestimo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CADASTRAR EMPRESTIMO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"idEmprestimo\": 6,\r\n        \"idLivro\": 8,\r\n        \"idAluno\": 10,\r\n        \"dataEmprestimo\": \"2024-09-01T03:00:00.000Z\",\r\n        \"dataDevolucao\": \"2024-09-15T03:00:00.000Z\",\r\n        \"statusEmprestimo\": \"Em andamento\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/novo/emprestimo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"novo",
+								"emprestimo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE EMPRESTIMO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/delete/emprestimo/25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"delete",
+								"emprestimo",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR EMPRESTIMO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"idLivro\": 27,\r\n        \"idAluno\": 10,\r\n        \"dataEmprestimo\": \"2024-11-20\",\r\n        \"dataDevolucao\": \"2024-12-30\",\r\n        \"statusEmprestimo\": \"Em andamento\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/atualizar/emprestimo/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"atualizar",
+								"emprestimo",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

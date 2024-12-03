@@ -50,11 +50,11 @@ export class AlunoController extends Aluno {
      * uma resposta HTTP 400 com uma mensagem de erro.
      * 
      * @param {Request} req - Objeto de requisição HTTP, contendo o corpo com os dados do aluno no formato `AlunoDTO`.
-     * @param {Response} res - Objeto de resposta HTTP usado para retornar o status e a mensagem ao cliente.
+     * @param {Response} res - Objeto de resposta HTTP usado para retornar o status e a mensagem ao aluno.
      * @returns {Promise<Response>} - Retorna uma resposta HTTP com o status 200 em caso de sucesso, ou 400 em caso de erro.
      * 
      * @throws {Error} - Se ocorrer um erro durante o processo de cadastro, uma mensagem é exibida no console e uma 
-     *                   resposta HTTP 400 com uma mensagem de erro é enviada ao cliente.
+     *                   resposta HTTP 400 com uma mensagem de erro é enviada ao aluno.
      */
     static async novo(req: Request, res: Response): Promise<any> {
         try {
@@ -113,6 +113,46 @@ export class AlunoController extends Aluno {
 
             // retorna uma mensagem de erro para quem chamou a mensagem
             return res.status(400).json({ mensagem: "Não foi possível remover o aluno. Entre em contato com o administrador do sistema." });
+        }
+    }
+
+    static async atualizar(req: Request, res: Response): Promise<any> {
+        try {
+
+            // recuperando as informações do aluno que serão atualizadas
+            const alunoRecebido: AlunoDTO = req.body;
+            // recuperando o id do aluno que será atualizado
+            const idAlunoRecebido = parseInt(req.params.idAluno as string);
+
+            // instanciando um objeto do tipo aluno com as informações recebidas
+            const alunoAtualizado = new Aluno(
+                alunoRecebido.nome,
+                alunoRecebido.sobrenome,
+                alunoRecebido.dataNascimento,
+                alunoRecebido.endereco,
+                alunoRecebido.email,
+                alunoRecebido.celular);
+
+            // setando o id do aluno que será atualizado
+            alunoAtualizado.setIdAluno(idAlunoRecebido);
+
+            // chamando a função de atualização de aluno
+            const resposta = await Aluno.atualizarAluno(alunoAtualizado);
+
+            // verificando a resposta da função
+            if (resposta) {
+                // retornar uma mensagem de sucesso
+                return res.status(200).json({ mensagem: "Aluno atualizado com sucesso!" });
+            } else {
+                // retorno uma mensagem de erro
+                return res.status(400).json({ mensagem: "Erro ao atualizar o aluno. Entre em contato com o administrador do sistema." })
+            }
+        } catch (error) {
+            // lança uma mensagem de erro no console
+            console.log(`Erro ao atualizar um aluno. ${error}`);
+
+            // retorna uma mensagem de erro há quem chamou a mensagem
+            return res.status(400).json({ mensagem: "Não foi possível atualizar o aluno. Entre em contato com o administrador do sistema." });
         }
     }
 }

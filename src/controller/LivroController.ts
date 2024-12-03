@@ -99,10 +99,10 @@ export class LivroController extends Livro {
 
     static async remover(req: Request, res: Response): Promise<any> {
         try {
-            // recuperando o id do carro que será removido
+            // recuperando o id do livro que será removido
             const idLivro = parseInt(req.params.idLivro as string);
 
-            // chamando a função de remoção de carro
+            // chamando a função de remoção de livro
             const respostaModelo = await Livro.removerLivro(idLivro);
 
             // verificando a resposta da função
@@ -119,6 +119,49 @@ export class LivroController extends Livro {
 
             // retorna uma mensagem de erro para quem chamou a mensagem
             return res.status(400).json({ mensagem: "Não foi possível remover o livro. Entre em contato com o administrador do sistema." });
+        }
+    }
+
+    static async atualizar(req: Request, res: Response): Promise<any> {
+        try {
+
+            // recuperando as informações do livro que serão atualizadas
+            const livroRecebido: LivroDTO = req.body;
+            // recuperando o id do livro que será atualizado
+            const idLivroRecebido = parseInt(req.params.idLivro as string);
+
+            // instanciando um objeto do tipo livro com as informações recebidas
+            const livroAtualizado = new Livro(
+                livroRecebido.titulo,
+                livroRecebido.autor,
+                livroRecebido.editora,
+                livroRecebido.anoPublicacao,
+                livroRecebido.isbn,
+                livroRecebido.quantTotal,
+                livroRecebido.quantDisponivel,
+                livroRecebido.valorAquisicao,
+                livroRecebido.statusLivroEmprestado);
+
+            // setando o id do livro que será atualizado
+            livroAtualizado.setIdLivro(idLivroRecebido);
+
+            // chamando a função de atualização de livro
+            const resposta = await Livro.atualizarLivro(livroAtualizado);
+
+            // verificando a resposta da função
+            if (resposta) {
+                // retornar uma mensagem de sucesso
+                return res.status(200).json({ mensagem: "Livro atualizado com sucesso!" });
+            } else {
+                // retorno uma mensagem de erro
+                return res.status(400).json({ mensagem: "Erro ao atualizar o livro. Entre em contato com o administrador do sistema." })
+            }
+        } catch (error) {
+            // lança uma mensagem de erro no console
+            console.log(`Erro ao atualizar um livro. ${error}`);
+
+            // retorna uma mensagem de erro há quem chamou a mensagem
+            return res.status(400).json({ mensagem: "Não foi possível atualizar o livro. Entre em contato com o administrador do sistema." });
         }
     }
 }

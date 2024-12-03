@@ -113,4 +113,43 @@ export class EmprestimoController extends Emprestimo {
             return res.status(400).json({ mensagem: "Não foi possível remover o Emprestimo. Entre em contato com o administrador do sistema." });
         }
     }
+
+    static async atualizar(req: Request, res: Response): Promise<any> {
+        try {
+
+            // recuperando as informações do emprestimo que serão atualizadas
+            const emprestimoRecebido: EmprestimoDTO = req.body;
+            // recuperando o id do emprestimo que será atualizado
+            const idEmprestimo = parseInt(req.params.idEmprestimo as string);
+
+            // instanciando um objeto do tipo emprestimo com as informações recebidas
+            const emprestimoAtualizado = new Emprestimo(
+                emprestimoRecebido.idAluno,
+                emprestimoRecebido.idLivro,
+                emprestimoRecebido.dataEmprestimo,
+                emprestimoRecebido.dataDevolucao,
+                emprestimoRecebido.statusEmprestimo);
+
+            // setando o id do emprestimo que será atualizado
+            emprestimoAtualizado.setIdEmprestimo(idEmprestimo);
+
+            // chamando a função de atualização de emprestimo
+            const resposta = await Emprestimo.atualizarEmprestimo(emprestimoAtualizado);
+
+            // verificando a resposta da função
+            if (resposta) {
+                // retornar uma mensagem de sucesso
+                return res.status(200).json({ mensagem: "Emprestimo atualizado com sucesso!" });
+            } else {
+                // retorno uma mensagem de erro
+                return res.status(400).json({ mensagem: "Erro ao atualizar o emprestimo. Entre em contato com o administrador do sistema." })
+            }
+        } catch (error) {
+            // lança uma mensagem de erro no console
+            console.log(`Erro ao atualizar um emprestimo. ${error}`);
+
+            // retorna uma mensagem de erro há quem chamou a mensagem
+            return res.status(400).json({ mensagem: "Não foi possível atualizar o emprestimo. Entre em contato com o administrador do sistema." });
+        }
+    }
 }

@@ -356,5 +356,40 @@ export class Aluno {
             return false;
         }
     }
+
+    static async atualizarAluno(aluno: Aluno): Promise<boolean> {
+        try {
+            // query para fazer update de um aluno no banco de dados
+            const queryUpdateALuno = `UPDATE aluno
+                                        SET nome = '${aluno.getNome()}', 
+                                            sobrenome = '${aluno.getSobrenome()}', 
+                                            data_nascimento = '${aluno.getDataNascimento()}',
+                                            endereco = '${aluno.getEndereco()}',
+                                            email = '${aluno.getEmail()}',
+                                            celular = '${aluno.getCelular()}'
+                                        WHERE id_aluno = ${aluno.getIdAluno()};`;
+
+            // executa a query no banco e armazena a resposta
+            const respostaBD = await database.query(queryUpdateALuno);
+
+            // verifica se a quantidade de linhas modificadas é diferente de 0
+            if (respostaBD.rowCount != 0) {
+                console.log(`Aluno atualizado com sucesso! ID do aluno: ${aluno.getIdAluno()}`);
+                // true significa que a atualização foi bem sucedida
+                return true;
+            }
+            // false significa que a atualização NÃO foi bem sucedida.
+            return false;
+            
+            // tratando o erro
+        } catch (error) {
+            // imprime outra mensagem junto com o erro
+            console.log('Erro ao atualizar o aluno. Verifique os logs para mais detalhes.');
+            // imprime o erro no console
+            console.log(error);
+            // retorno um valor falso
+            return false;
+        }
+    }
 }
 
