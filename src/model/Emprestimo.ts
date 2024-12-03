@@ -197,6 +197,7 @@ export class Emprestimo {
                 emprestimo.data_devolucao,
                 emprestimo.status_emprestimo,
                 aluno.nome AS nome_aluno,
+                aluno.sobrenome AS sobrenome_aluno,
                 livro.titulo AS titulo_livro
             FROM 
                 emprestimo
@@ -216,6 +217,7 @@ export class Emprestimo {
                     dataDevolucao: linha.data_devolucao,
                     statusEmprestimo: linha.status_emprestimo,
                     nomeAluno: linha.nome_aluno,
+                    sobrenomeAluno: linha.sobrenome_aluno,
                     tituloLivro: linha.titulo_livro
                 };
 
